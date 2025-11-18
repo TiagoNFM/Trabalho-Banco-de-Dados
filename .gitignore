@@ -1,0 +1,29 @@
+# Build Artifacts
+/build
+/dist
+/target
+/out
+
+# NetBeans/IDE-Specific Folders and Files
+/nbproject/private/
+/nbproject/project.properties
+/nbproject/project.xml
+/nb-configuration.xml
+
+# Compiled Files
+*.class
+*.jar
+*.war
+*.ear
+/bin/
+
+# Logs and Documentation
+*.log
+/apidocs
+
+# Misc files
+.idea/
+.vscode/
+# Backup files
+*~
+#*
