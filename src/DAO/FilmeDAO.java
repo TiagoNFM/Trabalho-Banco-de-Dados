@@ -1,7 +1,7 @@
 package DAO;
 
 import Dados.Filme;
-import ConexaoDB.ConnectionFactory;
+import ConexaoDB.Conexaodb;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ public class FilmeDAO {
 
     public void inserir(Filme filme) {
         String sql = "INSERT INTO FILME(titulo, genero, classificacao, duracao) VALUES(?, ?, ?, ?)";
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = Conexaodb.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
             pstmt.setString(1, filme.getTitulo());
@@ -28,7 +28,7 @@ public class FilmeDAO {
 
     public void remover(int id) {
         String sql = "DELETE FROM FILME WHERE id_filme = ?";
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = Conexaodb.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
             pstmt.setInt(1, id);
@@ -43,7 +43,7 @@ public class FilmeDAO {
     public List<Filme> listarTodos() {
         String sql = "SELECT * FROM FILME ORDER BY titulo";
         List<Filme> filmes = new ArrayList<>();
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = Conexaodb.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             

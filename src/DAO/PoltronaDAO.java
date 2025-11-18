@@ -1,7 +1,7 @@
 package DAO;
 
 import Dados.Poltrona;
-import ConexaoDB.ConnectionFactory;
+import ConexaoDB.Conexaodb;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ public class PoltronaDAO {
 
     public void inserir(Poltrona poltrona) {
         String sql = "INSERT INTO POLTRONA(numero, fila, fk_id_sala) VALUES(?, ?, ?)";
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = Conexaodb.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
             pstmt.setInt(1, poltrona.getNumero());
@@ -27,7 +27,7 @@ public class PoltronaDAO {
 
     public void remover(int id) {
         String sql = "DELETE FROM POLTRONA WHERE id_poltrona = ?";
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = Conexaodb.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
             pstmt.setInt(1, id);
@@ -42,7 +42,7 @@ public class PoltronaDAO {
     public List<Poltrona> listarTodos() {
         String sql = "SELECT * FROM POLTRONA ORDER BY fk_id_sala, fila, numero";
         List<Poltrona> poltronas = new ArrayList<>();
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = Conexaodb.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             

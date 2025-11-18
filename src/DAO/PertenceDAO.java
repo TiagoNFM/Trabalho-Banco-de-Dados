@@ -1,7 +1,7 @@
 package DAO;
 
 import Dados.Pertence;
-import ConexaoDB.ConnectionFactory;
+import ConexaoDB.Conexaodb;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ public class PertenceDAO {
 
     public void inserir(Pertence pertence) {
         String sql = "INSERT INTO PERTENCE(fk_id_sessao, fk_id_ingresso, fk_id_poltrona) VALUES(?, ?, ?)";
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = Conexaodb.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
             pstmt.setInt(1, pertence.getFkIdSessao());
@@ -28,7 +28,7 @@ public class PertenceDAO {
     // A chave primária é composta [cite: 40]
     public void remover(int idSessao, int idIngresso) {
         String sql = "DELETE FROM PERTENCE WHERE fk_id_sessao = ? AND fk_id_ingresso = ?";
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = Conexaodb.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
             pstmt.setInt(1, idSessao);
@@ -44,7 +44,7 @@ public class PertenceDAO {
     public List<Pertence> listarTodos() {
         String sql = "SELECT * FROM PERTENCE";
         List<Pertence> lista = new ArrayList<>();
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = Conexaodb.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             

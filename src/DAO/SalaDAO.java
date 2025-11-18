@@ -1,17 +1,16 @@
 package DAO;
 
 import Dados.Sala;
-import ConexaoDB.ConnectionFactory;
+import ConexaoDB.Conexaodb;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SalaDAO {
 
-    // Requisito: "Uma opção para inserir novas tuplas"
     public void inserir(Sala sala) {
         String sql = "INSERT INTO SALA(capacidade) VALUES(?)";
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = Conexaodb.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
             pstmt.setInt(1, sala.getCapacidade());
@@ -23,10 +22,9 @@ public class SalaDAO {
         }
     }
 
-    // Requisito: "Uma opção para remover tuplas"
     public void remover(int id) {
         String sql = "DELETE FROM SALA WHERE id_sala = ?";
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = Conexaodb.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
             pstmt.setInt(1, id);
@@ -38,11 +36,10 @@ public class SalaDAO {
         }
     }
 
-    // Requisito: "Uma opção para listar todas as tuplas"
     public List<Sala> listarTodos() {
         String sql = "SELECT * FROM SALA ORDER BY id_sala";
         List<Sala> salas = new ArrayList<>();
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = Conexaodb.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             

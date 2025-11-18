@@ -1,7 +1,7 @@
 package DAO;
 
 import Dados.Funcionario;
-import ConexaoDB.ConnectionFactory;
+import ConexaoDB.Conexaodb;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ public class FuncionarioDAO {
 
     public void inserir(Funcionario func) {
         String sql = "INSERT INTO FUNCIONARIO(nome, telefone, tipo_funcionario) VALUES(?, ?, ?)";
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = Conexaodb.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
             pstmt.setString(1, func.getNome());
@@ -27,7 +27,7 @@ public class FuncionarioDAO {
 
     public void remover(int matricula) {
         String sql = "DELETE FROM FUNCIONARIO WHERE matricula = ?";
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = Conexaodb.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
             pstmt.setInt(1, matricula);
@@ -42,7 +42,7 @@ public class FuncionarioDAO {
     public List<Funcionario> listarTodos() {
         String sql = "SELECT * FROM FUNCIONARIO ORDER BY nome";
         List<Funcionario> funcionarios = new ArrayList<>();
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = Conexaodb.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             

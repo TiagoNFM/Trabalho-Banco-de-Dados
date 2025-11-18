@@ -1,7 +1,7 @@
 package DAO;
 
 import Dados.Ingresso;
-import ConexaoDB.ConnectionFactory;
+import ConexaoDB.Conexaodb;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ public class IngressoDAO {
 
     public void inserir(Ingresso ingresso) {
         String sql = "INSERT INTO INGRESSO(forma_pagamento, tipo_ingresso, categoria_meia, fk_matricula_bilheteiro) VALUES(?, ?, ?, ?)";
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = Conexaodb.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
             pstmt.setString(1, ingresso.getFormaPagamento());
@@ -35,7 +35,7 @@ public class IngressoDAO {
 
     public void remover(int id) {
         String sql = "DELETE FROM INGRESSO WHERE id_ingresso = ?";
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = Conexaodb.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
             pstmt.setInt(1, id);
@@ -50,7 +50,7 @@ public class IngressoDAO {
     public List<Ingresso> listarTodos() {
         String sql = "SELECT * FROM INGRESSO ORDER BY id_ingresso";
         List<Ingresso> ingressos = new ArrayList<>();
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = Conexaodb.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             

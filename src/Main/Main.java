@@ -9,17 +9,15 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        // Crie instâncias de todos os seus DAOs
+
         SalaDAO salaDAO = new SalaDAO();
         SessaoDAO sessaoDAO = new SessaoDAO();
-        // --- DAOs Adicionados ---
         FilmeDAO filmeDAO = new FilmeDAO();
         PoltronaDAO poltronaDAO = new PoltronaDAO();
         FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
         IngressoDAO ingressoDAO = new IngressoDAO();
         VigilanciaSessaoDAO vigilanciaDAO = new VigilanciaSessaoDAO();
         PertenceDAO pertenceDAO = new PertenceDAO();
-        // --- Fim da Adição ---
         
         RelatorioDAO relatorioDAO = new RelatorioDAO();
         
@@ -35,8 +33,6 @@ public class Main {
             System.out.println("4. Inserir Sessao");
             System.out.println("5. Remover Sessao");
             System.out.println("6. Listar Sessoes");
-            
-            // --- Menus Adicionados ---
             System.out.println("--- Gerenciar Filmes ---");
             System.out.println("7. Inserir Filme");
             System.out.println("8. Remover Filme");
@@ -61,8 +57,6 @@ public class Main {
             System.out.println("22. Inserir Venda (Pertence)");
             System.out.println("23. Remover Venda (Pertence)");
             System.out.println("24. Listar Vendas (Pertence)");
-            // --- Fim dos Menus Adicionados ---
-            
             System.out.println("--- Relatorios ---");
             System.out.println("50. Relatorio: Sessões com Nomes de Filmes (JOIN)");
             System.out.println("51. Relatorio: Salas com Capacidade Acima da Media (SUBQUERY)");
@@ -70,20 +64,20 @@ public class Main {
             System.out.print("Escolha uma opçao: ");
             
             int opcao = scanner.nextInt();
-            scanner.nextLine(); // Limpa o buffer do scanner
+            scanner.nextLine();
             
             switch(opcao) {
                 case 1: // Inserir Sala
                     Sala sala = new Sala();
                     System.out.print("Digite a capacidade da nova sala: ");
                     sala.setCapacidade(scanner.nextInt());
-                    scanner.nextLine(); // Limpa o buffer
+                    scanner.nextLine();
                     salaDAO.inserir(sala);
                     break;
                 case 2: // Remover Sala
                     System.out.print("Digite o ID da sala a remover: ");
                     salaDAO.remover(scanner.nextInt());
-                    scanner.nextLine(); // Limpa o buffer
+                    scanner.nextLine();
                     break;
                 case 3: // Listar Salas
                     System.out.println("\nListando Salas:");
@@ -101,13 +95,13 @@ public class Main {
                     sessao.setFkIdFilme(scanner.nextInt());
                     System.out.print("Digite o ID da Sala (FK): ");
                     sessao.setFkIdSala(scanner.nextInt());
-                    scanner.nextLine(); // Limpa o buffer
+                    scanner.nextLine();
                     sessaoDAO.inserir(sessao);
                     break;
                 case 5: // Remover Sessão
                     System.out.print("Digite o ID da sessão a remover: ");
                     sessaoDAO.remover(scanner.nextInt());
-                    scanner.nextLine(); // Limpa o buffer
+                    scanner.nextLine();
                     break;
                 case 6: // Listar Sessões
                     System.out.println("\nListando Sessões:");
@@ -115,8 +109,6 @@ public class Main {
                         System.out.println(s);
                     }
                     break;
-                
-                // --- Cases Adicionados ---
                 
                 case 7: // Inserir Filme
                     Filme filme = new Filme();
@@ -128,13 +120,13 @@ public class Main {
                     filme.setClassificacao(scanner.nextLine());
                     System.out.print("Digite a duração (em min): ");
                     filme.setDuracao(scanner.nextInt());
-                    scanner.nextLine(); // Limpa o buffer
+                    scanner.nextLine();
                     filmeDAO.inserir(filme);
                     break;
                 case 8: // Remover Filme
                     System.out.print("Digite o ID do filme a remover: ");
                     filmeDAO.remover(scanner.nextInt());
-                    scanner.nextLine(); // Limpa o buffer
+                    scanner.nextLine();
                     break;
                 case 9: // Listar Filmes
                     System.out.println("\nListando Filmes:");
@@ -151,13 +143,13 @@ public class Main {
                     poltrona.setNumero(scanner.nextInt());
                     System.out.print("Digite o ID da Sala (FK): ");
                     poltrona.setFkIdSala(scanner.nextInt());
-                    scanner.nextLine(); // Limpa o buffer
+                    scanner.nextLine();
                     poltronaDAO.inserir(poltrona);
                     break;
                 case 11: // Remover Poltrona
                     System.out.print("Digite o ID da poltrona a remover: ");
                     poltronaDAO.remover(scanner.nextInt());
-                    scanner.nextLine(); // Limpa o buffer
+                    scanner.nextLine();
                     break;
                 case 12: // Listar Poltronas
                     System.out.println("\nListando Poltronas:");
@@ -174,7 +166,7 @@ public class Main {
                     func.setTelefone(scanner.nextLine());
                     System.out.print("Digite o tipo (1=Vigia, 2=Bilheteiro): ");
                     func.setTipoFuncionario(scanner.nextInt());
-                    scanner.nextLine(); // Limpa o buffer
+                    scanner.nextLine();
                     funcionarioDAO.inserir(func);
                     break;
                 case 14: // Remover Funcionário
@@ -205,13 +197,13 @@ public class Main {
                     }
                     System.out.print("Digite a matrícula do Bilheteiro (FK): ");
                     ingresso.setFkMatriculaBilheteiro(scanner.nextInt());
-                    scanner.nextLine(); // Limpa o buffer
+                    scanner.nextLine();
                     ingressoDAO.inserir(ingresso);
                     break;
                 case 17: // Remover Ingresso
                     System.out.print("Digite o ID do ingresso a remover: ");
                     ingressoDAO.remover(scanner.nextInt());
-                    scanner.nextLine(); // Limpa o buffer
+                    scanner.nextLine();
                     break;
                 case 18: // Listar Ingressos
                     System.out.println("\nListando Ingressos:");
@@ -226,7 +218,7 @@ public class Main {
                     vs.setFkIdSessao(scanner.nextInt());
                     System.out.print("Digite a Matrícula do Vigia (FK): ");
                     vs.setFkMatriculaVigia(scanner.nextInt());
-                    scanner.nextLine(); // Limpa o buffer
+                    scanner.nextLine();
                     vigilanciaDAO.inserir(vs);
                     break;
                 case 20: // Remover Vigilância
@@ -234,7 +226,7 @@ public class Main {
                     int vsSessaoId = scanner.nextInt();
                     System.out.print("Digite a Matrícula do Vigia a remover: ");
                     int vsVigiaId = scanner.nextInt();
-                    scanner.nextLine(); // Limpa o buffer
+                    scanner.nextLine();
                     vigilanciaDAO.remover(vsSessaoId, vsVigiaId);
                     break;
                 case 21: // Listar Vigilâncias
@@ -252,7 +244,7 @@ public class Main {
                     pertence.setFkIdIngresso(scanner.nextInt());
                     System.out.print("Digite o ID da Poltrona (FK): ");
                     pertence.setFkIdPoltrona(scanner.nextInt());
-                    scanner.nextLine(); // Limpa o buffer
+                    scanner.nextLine();
                     pertenceDAO.inserir(pertence);
                     break;
                 case 23: // Remover Venda (Pertence)
@@ -260,27 +252,25 @@ public class Main {
                     int pSessaoId = scanner.nextInt();
                     System.out.print("Digite o ID do Ingresso da venda a remover: ");
                     int pIngressoId = scanner.nextInt();
-                    scanner.nextLine(); // Limpa o buffer
+                    scanner.nextLine();
                     pertenceDAO.remover(pSessaoId, pIngressoId);
                     break;
                 case 24: // Listar Vendas (Pertence)
-                    System.out.println("\nListando Vendas (Sessão x Ingresso x Poltrona):");
+                    System.out.println("\nListando Vendas (Sessao x Ingresso x Poltrona):");
                     for (Pertence p : pertenceDAO.listarTodos()) {
                         System.out.println(p);
                     }
                     break;
-                
-                // --- Fim dos Cases Adicionados ---
 
-                case 50: // Relatório 1
+                case 50:
                     relatorioDAO.relatorioJoinSessaoFilme();
                     break;
-                case 51: // Relatório 2
+                case 51:
                     relatorioDAO.relatorioSubqueryAggSala();
                     break;
                 case 0:
                     System.out.println("Saindo...");
-                    scanner.close(); // Fecha o scanner
+                    scanner.close();
                     System.exit(0);
                 default:
                     System.out.println("Opção inválida.");

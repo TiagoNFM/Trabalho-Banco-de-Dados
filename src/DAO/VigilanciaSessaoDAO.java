@@ -1,7 +1,7 @@
 package DAO;
 
 import Dados.VigilanciaSessao;
-import ConexaoDB.ConnectionFactory;
+import ConexaoDB.Conexaodb;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ public class VigilanciaSessaoDAO {
 
     public void inserir(VigilanciaSessao vs) {
         String sql = "INSERT INTO VIGILANCIA_SESSAO(fk_id_sessao, fk_matricula_vigia) VALUES(?, ?)";
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = Conexaodb.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
             pstmt.setInt(1, vs.getFkIdSessao());
@@ -27,7 +27,7 @@ public class VigilanciaSessaoDAO {
     // A chave primária é composta [cite: 37]
     public void remover(int idSessao, int idVigia) {
         String sql = "DELETE FROM VIGILANCIA_SESSAO WHERE fk_id_sessao = ? AND fk_matricula_vigia = ?";
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = Conexaodb.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
             pstmt.setInt(1, idSessao);
@@ -43,7 +43,7 @@ public class VigilanciaSessaoDAO {
     public List<VigilanciaSessao> listarTodos() {
         String sql = "SELECT * FROM VIGILANCIA_SESSAO";
         List<VigilanciaSessao> lista = new ArrayList<>();
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = Conexaodb.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             
