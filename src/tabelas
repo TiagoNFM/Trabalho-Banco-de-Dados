@@ -1,0 +1,68 @@
+-- 1. Tabelas que não dependem de outras
+CREATE TABLE FILME (
+    id_filme SERIAL PRIMARY KEY,
+    titulo VARCHAR(150) NOT NULL UNIQUE,
+    genero VARCHAR(50),
+    classificacao VARCHAR(10),
+    duracao INT
+);
+
+CREATE TABLE SALA (
+    id_sala SERIAL PRIMARY KEY,
+    capacidade INT NOT NULL
+);
+
+CREATE TABLE FUNCIONARIO (
+    matricula SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    telefone VARCHAR(20),
+    tipo_funcionario SMALLINT NOT NULL
+);
+
+CREATE TABLE INGRESSO (
+    id_ingresso SERIAL PRIMARY KEY,
+    forma_pagamento VARCHAR(50) NOT NULL,
+    tipo_ingresso SMALLINT NOT NULL,
+    categoria_meia SMALLINT,
+    fk_matricula_bilheteiro SMALLINT NOT NULL,
+    FOREIGN KEY (fk_matricula_bilheteiro) REFERENCES FUNCIONARIO(matricula)
+);
+
+-- 2. Tabelas que dependem das primeiras
+CREATE TABLE SESSAO (
+    id_sessao SERIAL PRIMARY KEY,
+    data DATE NOT NULL,
+    horario TIME NOT NULL,
+    fk_id_filme INT NOT NULL,
+    fk_id_sala INT NOT NULL,
+    FOREIGN KEY (fk_id_filme) REFERENCES FILME(id_filme),
+    FOREIGN KEY (fk_id_sala) REFERENCES SALA(id_sala)
+);
+
+CREATE TABLE POLTRONA (
+    id_poltrona SERIAL PRIMARY KEY,
+    numero INT NOT NULL,
+    fila VARCHAR(2) NOT NULL,
+    fk_id_sala INT NOT NULL,
+    FOREIGN KEY (fk_id_sala) REFERENCES SALA(id_sala),
+    UNIQUE(numero, fila, fk_id_sala)
+);
+
+CREATE TABLE VIGILANCIA_SESSAO (
+    fk_id_sessao INT NOT NULL,
+    fk_matricula_vigia INT NOT NULL,
+    FOREIGN KEY (fk_id_sessao) REFERENCES SESSAO(id_sessao),
+    FOREIGN KEY (fk_matricula_vigia) REFERENCES FUNCIONARIO(matricula),
+    PRIMARY KEY (fk_id_sessao, fk_matricula_vigia)
+);
+
+CREATE TABLE PERTENCE (
+    fk_id_sessao INT NOT NULL,
+    fk_id_ingresso INT NOT NULL,
+    fk_id_poltrona INT NOT NULL,
+    FOREIGN KEY (fk_id_sessao) REFERENCES SESSAO(id_sessao),
+    FOREIGN KEY (fk_id_ingresso) REFERENCES INGRESSO(id_ingresso),
+    FOREIGN KEY (fk_id_poltrona) REFERENCES POLTRONA(id_poltrona),
+    PRIMARY KEY (fk_id_sessao, fk_id_ingresso),
+    UNIQUE(fk_id_sessao, fk_id_poltrona)
+);
