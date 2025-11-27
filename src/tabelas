@@ -1,4 +1,3 @@
--- 1. Tabelas que não dependem de outras
 CREATE TABLE FILME (
     id_filme SERIAL PRIMARY KEY,
     titulo VARCHAR(150) NOT NULL UNIQUE,
@@ -28,7 +27,6 @@ CREATE TABLE INGRESSO (
     FOREIGN KEY (fk_matricula_bilheteiro) REFERENCES FUNCIONARIO(matricula)
 );
 
--- 2. Tabelas que dependem das primeiras
 CREATE TABLE SESSAO (
     id_sessao SERIAL PRIMARY KEY,
     data DATE NOT NULL,
@@ -66,3 +64,42 @@ CREATE TABLE PERTENCE (
     PRIMARY KEY (fk_id_sessao, fk_id_ingresso),
     UNIQUE(fk_id_sessao, fk_id_poltrona)
 );
+
+INSERT INTO FILME (id_filme, titulo, genero, classificacao, duracao) VALUES 
+(1, 'Matrix', 'Ficção Científica', '14', 136),
+(2, 'O Auto da Compadecida', 'Comédia', '12', 104);
+
+INSERT INTO SALA (id_sala, capacidade) VALUES 
+(1, 50),
+(2, 120);
+
+INSERT INTO FUNCIONARIO (matricula, nome, telefone, tipo_funcionario) VALUES 
+(1, 'Carlos Silva (Vigia)', '47 9999-1111', 1),
+(2, 'Ana Souza (Bilheteira)', '47 9999-2222', 2);
+
+INSERT INTO SESSAO (id_sessao, data, horario, fk_id_filme, fk_id_sala) VALUES 
+(1, '2025-12-01', '14:00:00', 1, 1),
+(2, '2025-12-01', '16:30:00', 2, 2);
+
+INSERT INTO POLTRONA (id_poltrona, numero, fila, fk_id_sala) VALUES 
+(1, 1, 'A', 1),
+(2, 5, 'B', 2);
+
+INSERT INTO INGRESSO (id_ingresso, forma_pagamento, tipo_ingresso, categoria_meia, fk_matricula_bilheteiro) VALUES 
+(1, 'Dinheiro', 1, NULL, 2),
+(2, 'Pix', 2, 1, 2);
+
+INSERT INTO VIGILANCIA_SESSAO (fk_id_sessao, fk_matricula_vigia) VALUES 
+(1, 1),
+(2, 1);
+
+INSERT INTO PERTENCE (fk_id_sessao, fk_id_ingresso, fk_id_poltrona) VALUES 
+(1, 1, 1),
+(2, 2, 2);
+
+SELECT setval('filme_id_filme_seq', 3, false);
+SELECT setval('sala_id_sala_seq', 3, false);
+SELECT setval('funcionario_matricula_seq', 3, false);
+SELECT setval('sessao_id_sessao_seq', 3, false);
+SELECT setval('poltrona_id_poltrona_seq', 3, false);
+SELECT setval('ingresso_id_ingresso_seq', 3, false);

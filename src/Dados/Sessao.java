@@ -7,8 +7,8 @@ public class Sessao {
     private int idSessao;
     private Date data;
     private Time horario;
-    private int fkIdFilme; // Armazenamos apenas o ID da chave estrangeira
-    private int fkIdSala;  // Armazenamos apenas o ID da chave estrangeira
+    private int fkIdFilme;
+    private int fkIdSala;
 
     // Getters e Setters
     public int getIdSessao() { return idSessao; }

@@ -25,7 +25,6 @@ public class PertenceDAO {
         }
     }
 
-    // A chave primária é composta [cite: 40]
     public void remover(int idSessao, int idIngresso) {
         String sql = "DELETE FROM PERTENCE WHERE fk_id_sessao = ? AND fk_id_ingresso = ?";
         try (Connection conn = Conexaodb.getConnection();

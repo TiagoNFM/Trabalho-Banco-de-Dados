@@ -4,7 +4,7 @@ public class Funcionario {
     private int matricula;
     private String nome;
     private String telefone;
-    private int tipoFuncionario; // 1 = Vigia, 2 = Bilheteiro (conforme seu Dicionário de Dados)
+    private int tipoFuncionario; // 1 = Vigia, 2 = Bilheteiro
 
     // Getters e Setters
     public int getMatricula() { return matricula; }

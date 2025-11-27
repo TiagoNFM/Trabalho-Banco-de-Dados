@@ -16,7 +16,6 @@ public class IngressoDAO {
             pstmt.setString(1, ingresso.getFormaPagamento());
             pstmt.setInt(2, ingresso.getTipoIngresso());
             
-            // Tratamento especial para 'categoria_meia' que pode ser nula [cite: 34]
             if (ingresso.getCategoriaMeia() == null) {
                 pstmt.setNull(3, java.sql.Types.SMALLINT);
             } else {
@@ -60,7 +59,6 @@ public class IngressoDAO {
                 ingresso.setFormaPagamento(rs.getString("forma_pagamento"));
                 ingresso.setTipoIngresso(rs.getInt("tipo_ingresso"));
                 
-                // Tratamento especial para ler o 'SMALLINT' nulo
                 int catMeia = rs.getInt("categoria_meia");
                 if (!rs.wasNull()) {
                     ingresso.setCategoriaMeia(catMeia);

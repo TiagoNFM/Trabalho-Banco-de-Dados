@@ -4,7 +4,7 @@ public class Ingresso {
     private int idIngresso;
     private String formaPagamento;
     private int tipoIngresso; // 1 = Inteira, 2 = Meia
-    private Integer categoriaMeia; // Wrapper 'Integer' permite valor NULL [cite: 34]
+    private Integer categoriaMeia;
     private int fkMatriculaBilheteiro;
 
     // Getters e Setters

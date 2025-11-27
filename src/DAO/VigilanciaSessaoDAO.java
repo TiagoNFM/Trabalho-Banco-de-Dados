@@ -24,7 +24,6 @@ public class VigilanciaSessaoDAO {
         }
     }
 
-    // A chave primária é composta [cite: 37]
     public void remover(int idSessao, int idVigia) {
         String sql = "DELETE FROM VIGILANCIA_SESSAO WHERE fk_id_sessao = ? AND fk_matricula_vigia = ?";
         try (Connection conn = Conexaodb.getConnection();
