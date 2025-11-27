@@ -21,6 +21,6 @@ public class Filme {
 
     @Override
     public String toString() {
-        return "Filme [ID=" + idFilme + ", Titulo=" + titulo + ", Genero=" + genero + "]";
+        return "ID: " + idFilme + " | " + titulo + "Genero(" + genero + ") | Duração: " + duracao + " min";
     }
 }

@@ -3,6 +3,7 @@ package DAO;
 import Dados.Sessao;
 import ConexaoDB.Conexaodb;
 import java.sql.*;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +42,11 @@ public class SessaoDAO {
     }
 
     public List<Sessao> listarTodos() {
-        String sql = "SELECT * FROM SESSAO ORDER BY data, horario";
+        String sql = "SELECT s.*, f.titulo, f.duracao " +
+                     "FROM SESSAO s " +
+                     "JOIN FILME f ON s.fk_id_filme = f.id_filme " +
+                     "ORDER BY s.data, s.horario";
+                     
         List<Sessao> sessoes = new ArrayList<>();
         try (Connection conn = Conexaodb.getConnection();
              Statement stmt = conn.createStatement();
@@ -51,9 +56,21 @@ public class SessaoDAO {
                 Sessao sessao = new Sessao();
                 sessao.setIdSessao(rs.getInt("id_sessao"));
                 sessao.setData(rs.getDate("data"));
-                sessao.setHorario(rs.getTime("horario"));
+
+                Time horarioInicio = rs.getTime("horario");
+                sessao.setHorario(horarioInicio);
+
                 sessao.setFkIdFilme(rs.getInt("fk_id_filme"));
                 sessao.setFkIdSala(rs.getInt("fk_id_sala"));
+
+                String nomeFilme = rs.getString("titulo");
+                int duracaoMinutos = rs.getInt("duracao");
+                
+                LocalTime horaFim = horarioInicio.toLocalTime().plusMinutes(duracaoMinutos);
+                
+                sessao.setNomeFilmeAux(nomeFilme);
+                sessao.setHorarioFimAux(Time.valueOf(horaFim));
+                
                 sessoes.add(sessao);
             }
         } catch (SQLException e) {
@@ -62,5 +79,3 @@ public class SessaoDAO {
         return sessoes;
     }
 }
-    
-

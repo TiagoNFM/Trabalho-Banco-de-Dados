@@ -34,8 +34,8 @@ public class Main {
             System.out.println("19. Inserir Vigilância     | 20. Remover Vigilância     | 21. Listar Vigilâncias");
             System.out.println("22. Inserir Venda          | 23. Remover Venda          | 24. Listar Vendas");
             System.out.println("---------------------------------------------------------------");
-            System.out.println("50. Relatório: Sessões com Nomes (JOIN)");
-            System.out.println("51. Relatório: Salas Acima da Média (SUBQUERY)");
+            System.out.println("50. Relatório: Sessões com Nomes");
+            System.out.println("51. Relatório: Salas Acima da Média");
             System.out.println("0.  Sair");
             System.out.println("===============================================================");
             System.out.print("Escolha uma opção: ");
@@ -207,7 +207,7 @@ public class Main {
                     vigilanciaDAO.remover(vsSessaoId, vsVigiaId);
                     break;
                 case 21: // Listar Vigilâncias
-                    System.out.println("\nListando Vigilâncias (Sessão x Vigia):");
+                    System.out.println("\nListando Vigilâncias:");
                     for (VigilanciaSessao v : vigilanciaDAO.listarTodos()) {
                         System.out.println(v);
                     }
@@ -233,7 +233,7 @@ public class Main {
                     pertenceDAO.remover(pSessaoId, pIngressoId);
                     break;
                 case 24: // Listar Vendas (Pertence)
-                    System.out.println("\nListando Vendas (Sessao x Ingresso x Poltrona):");
+                    System.out.println("\nListando Vendas:");
                     for (Pertence p : pertenceDAO.listarTodos()) {
                         System.out.println(p);
                     }

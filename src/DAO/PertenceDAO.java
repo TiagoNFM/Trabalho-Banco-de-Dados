@@ -18,7 +18,7 @@ public class PertenceDAO {
             pstmt.setInt(3, pertence.getFkIdPoltrona());
             
             pstmt.executeUpdate();
-            System.out.println("Venda de ingresso (Pertence) inserida com sucesso!");
+            System.out.println("Venda de ingresso inserida com sucesso!");
             
         } catch (SQLException e) {
             System.err.println("Erro ao inserir 'pertence': " + e.getMessage());
@@ -33,7 +33,7 @@ public class PertenceDAO {
             pstmt.setInt(1, idSessao);
             pstmt.setInt(2, idIngresso);
             pstmt.executeUpdate();
-            System.out.println("Venda de ingresso (Pertence) removida com sucesso!");
+            System.out.println("Venda de ingresso removida com sucesso!");
 
         } catch (SQLException e) {
             System.err.println("Erro ao remover 'pertence': " + e.getMessage());

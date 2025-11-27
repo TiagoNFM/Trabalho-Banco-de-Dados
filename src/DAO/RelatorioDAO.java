@@ -14,7 +14,7 @@ public class RelatorioDAO {
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             
-            System.out.println("\n--- Relatório de Sessões (JOIN) ---");
+            System.out.println("\n--- Relatório de Sessões ---");
             while (rs.next()) {
                 System.out.printf("ID Sessão: %d | Data: %s | Horário: %s | Filme: %s\n",
                         rs.getInt("id_sessao"),

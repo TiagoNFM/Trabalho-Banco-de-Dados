@@ -74,8 +74,8 @@ INSERT INTO SALA (id_sala, capacidade) VALUES
 (2, 120);
 
 INSERT INTO FUNCIONARIO (matricula, nome, telefone, tipo_funcionario) VALUES 
-(1, 'Carlos Silva (Vigia)', '47 9999-1111', 1),
-(2, 'Ana Souza (Bilheteira)', '47 9999-2222', 2);
+(1, 'Carlos Silva', '47 9999-1111', 1),
+(2, 'Ana Souza', '47 9999-2222', 2);
 
 INSERT INTO SESSAO (id_sessao, data, horario, fk_id_filme, fk_id_sala) VALUES 
 (1, '2025-12-01', '14:00:00', 1, 1),
