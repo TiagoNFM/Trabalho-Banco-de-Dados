@@ -12,6 +12,9 @@
 /nbproject/project.properties
 /nbproject/project.xml
 /nb-configuration.xml
+build.xml
+manifest.mf
+nbproject/
 
 # Compiled Files
 *.class
