@@ -20,7 +20,7 @@ CREATE TABLE FUNCIONARIO (
 
 CREATE TABLE INGRESSO (
     id_ingresso SERIAL PRIMARY KEY,
-    forma_pagamento VARCHAR(50) NOT NULL,
+    forma_pagamento INT NOT NULL,
     tipo_ingresso SMALLINT NOT NULL,
     categoria_meia SMALLINT,
     fk_matricula_bilheteiro SMALLINT NOT NULL,

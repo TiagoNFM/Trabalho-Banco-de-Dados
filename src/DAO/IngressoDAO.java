@@ -13,7 +13,7 @@ public class IngressoDAO {
         try (Connection conn = Conexaodb.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
-            pstmt.setString(1, ingresso.getFormaPagamento());
+            pstmt.setInt(1, ingresso.getFormaPagamento());
             pstmt.setInt(2, ingresso.getTipoIngresso());
             
             if (ingresso.getCategoriaMeia() == null) {
@@ -56,7 +56,7 @@ public class IngressoDAO {
             while (rs.next()) {
                 Ingresso ingresso = new Ingresso();
                 ingresso.setIdIngresso(rs.getInt("id_ingresso"));
-                ingresso.setFormaPagamento(rs.getString("forma_pagamento"));
+                ingresso.setFormaPagamento(rs.getInt("forma_pagamento"));
                 ingresso.setTipoIngresso(rs.getInt("tipo_ingresso"));
                 
                 int catMeia = rs.getInt("categoria_meia");
