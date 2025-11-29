@@ -21,24 +21,24 @@ public class Ingresso {
 
     @Override
     public String toString() {
-        String tipo;
+        String forma;
         switch(tipoIngresso) {
             case 1:
-                tipo = "Credito";
+                forma = "Credito";
                 break;
             case 2:
-                tipo = "Debito";
+                forma = "Debito";
                 break;
             case 3:
-                tipo = "Pix";
+                forma = "Pix";
                 break;
             case 4:
-                tipo = "Dinheiro";
+                forma = "Dinheiro";
                 break;
             default:
-                tipo = "tipo invalido";
+                forma = "tipo invalido";
         }        
-        return "Ingresso [ID=" + idIngresso + ", Tipo=" + tipo + ", Pagamento=" + formaPagamento + "]";
+        return "Ingresso [ID=" + idIngresso + ", Tipo=" + tipoIngresso + ", Pagamento=" + forma + "]";
         
     }
 }

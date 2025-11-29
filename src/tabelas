@@ -86,8 +86,8 @@ INSERT INTO POLTRONA (id_poltrona, numero, fila, fk_id_sala) VALUES
 (2, 5, 'B', 2);
 
 INSERT INTO INGRESSO (id_ingresso, forma_pagamento, tipo_ingresso, categoria_meia, fk_matricula_bilheteiro) VALUES 
-(1, 'Dinheiro', 1, NULL, 2),
-(2, 'Pix', 2, 1, 2);
+(1, 4, 1, NULL, 2),
+(2, 3, 2, 1, 2);
 
 INSERT INTO VIGILANCIA_SESSAO (fk_id_sessao, fk_matricula_vigia) VALUES 
 (1, 1),
